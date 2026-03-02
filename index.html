@@ -1,1 +1,28 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RayShield 2D</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="toolbar">
+  <input type="file" id="fileInput">
+  <button id="runBtn">Run</button>
+  <button id="stopBtn">Stop</button>
+  <button id="exportBtn">Export</button>
+  <button id="lockAllBtn">Lock/Unlock All</button>
+
+  Rays: <input id="rayCount" type="number" value="1000">
+  Threshold: <input id="threshold" type="number" value="200">
+</div>
+
+<canvas id="canvas"></canvas>
+
+<div id="sidepanel"></div>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
