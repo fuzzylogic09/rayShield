@@ -24,19 +24,31 @@ export class Renderer {
     const ctx=this.ctx;
     ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
 
-    for(let name in this.scene.objects){
-      const obj=this.scene.objects[name];
-      if(obj.parameters.enabled==="False")continue;
-      ctx.beginPath();
-      const pts=obj.points;
-      for(let i=0;i<pts.length;i++){
-        const p=this.worldToScreen({x:pts[i][0],y:pts[i][1]});
-        if(i===0)ctx.moveTo(p.x,p.y);
-        else ctx.lineTo(p.x,p.y);
-      }
-      ctx.strokeStyle="white";
-      ctx.stroke();
+  for(let name in this.scene.objects){
+    const obj=this.scene.objects[name];
+    if(obj.parameters.enabled==="False")continue;
+  
+    const pts=obj.points;
+    if(pts.length < 2) continue;
+  
+    this.ctx.beginPath();
+  
+    const first = this.worldToScreen({x:pts[0][0], y:pts[0][1]});
+    this.ctx.moveTo(first.x, first.y);
+  
+    for(let i=1;i<pts.length;i++){
+      const p=this.worldToScreen({x:pts[i][0], y:pts[i][1]});
+      this.ctx.lineTo(p.x, p.y);
     }
+  
+    // 🔥 IMPORTANT
+    if(obj.parameters.type === "surface"){
+      this.ctx.closePath();
+    }
+  
+    this.ctx.strokeStyle="white";
+    this.ctx.stroke();
+  }
 
     this.scene.rays.forEach(r=>{
       ctx.strokeStyle="red";
