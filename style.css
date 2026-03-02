@@ -1,0 +1,29 @@
+body { margin:0; font-family:Arial; background:#111; color:white; }
+
+#toolbar {
+  background:#222;
+  padding:8px;
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+#sidepanel {
+  position:absolute;
+  right:0;
+  top:50px;
+  width:250px;
+  bottom:0;
+  background:#1b1b1b;
+  overflow:auto;
+  padding:10px;
+}
+
+canvas {
+  position:absolute;
+  left:0;
+  top:50px;
+  bottom:0;
+  right:250px;
+  background:#000;
+}
