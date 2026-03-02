@@ -88,3 +88,15 @@ export class Renderer {
     };
   }
 }
+
+getColor(eq){
+
+  const max = this.scene.parameters.minThicknessToShow;
+  const t = Math.min(eq/max,1);
+
+  const r = Math.floor(255*t);
+  const g = Math.floor(255*(1-t));
+  const b = 0;
+
+  return `rgb(${r},${g},${b})`;
+}
