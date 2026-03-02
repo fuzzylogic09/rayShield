@@ -50,15 +50,22 @@ export class Renderer {
     this.ctx.stroke();
   }
 
-    this.scene.rays.forEach(r=>{
-      ctx.strokeStyle="red";
-      ctx.beginPath();
-      const a=this.worldToScreen(r.ray[0]);
-      const b=this.worldToScreen(r.ray[1]);
-      ctx.moveTo(a.x,a.y);
-      ctx.lineTo(b.x,b.y);
-      ctx.stroke();
-    });
+  this.scene.updateRays();
+  
+  this.scene.rays.forEach(r=>{
+    this.ctx.globalAlpha = r.life;
+  
+    this.ctx.strokeStyle = this.getColor(r.eq);
+  
+    this.ctx.beginPath();
+    const a=this.worldToScreen(r.ray[0]);
+    const b=this.worldToScreen(r.ray[1]);
+    this.ctx.moveTo(a.x,a.y);
+    this.ctx.lineTo(b.x,b.y);
+    this.ctx.stroke();
+  });
+  
+  this.ctx.globalAlpha = 1.0;
   }
 
   initEvents(){
