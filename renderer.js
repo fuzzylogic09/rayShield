@@ -24,6 +24,24 @@ export class Renderer {
     const ctx=this.ctx;
     ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
 
+    const ctx=this.ctx;
+    const w=20;
+    const h=200;
+    const x=this.canvas.width-40;
+    const y=20;
+    
+    for(let i=0;i<h;i++){
+      const t=i/h;
+      const r=Math.floor(255*t);
+      const g=Math.floor(255*(1-t));
+      ctx.fillStyle=`rgb(${r},${g},0)`;
+      ctx.fillRect(x,y+i,w,1);
+    }
+    
+    ctx.fillStyle="white";
+    ctx.fillText("0",x-25,y+h);
+    ctx.fillText(this.scene.parameters.minThicknessToShow,x-40,y);
+        
   for(let name in this.scene.objects){
     const obj=this.scene.objects[name];
     if(obj.parameters.enabled==="False")continue;
